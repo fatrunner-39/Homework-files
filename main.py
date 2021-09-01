@@ -1,7 +1,8 @@
 import os
+from pprint import pprint
+
 
 # Задания 1, 2
-from pprint import pprint
 
 def recipes_dict(file_name):
     result = dict()
@@ -45,24 +46,16 @@ def pages(directory):
     files_list = os.listdir(path=directory)
     dict_files = dict()
     sorted_dict_files = dict()
-    # print(files_list)
     list_lines = []
     for doc in files_list:
         with open(os.path.join(directory, doc), encoding='UTF-8') as file:
-            # for line in file:
-            #     print(line.strip())
             lines = file.read().splitlines()
             list_lines.append(len(lines))
         dict_files[doc] = (len(lines), lines)
-        # dict_files[doc] = len(lines)
-    # print(list_lines)
-    # pprint(dict_files)
 
     sorted_keys = sorted(dict_files, key=dict_files.get)
-    # print(sorted_keys)
     for key in sorted_keys:
         sorted_dict_files[key] = dict_files[key]
-    # pprint(sorted_dict_files)
 
     with open('new_file.txt', 'w', encoding='UTF-8') as document:
         for key, val in sorted_dict_files.items():
@@ -70,8 +63,6 @@ def pages(directory):
             document.write(str(val[0]) + '\n')
             for string in val[1]:
                 document.write(string + '\n')
-            # document.write(str(val[1]).strip("[]") + '\n')
-        # print(str(val[1]).strip("[]"))
 
 folder = os.path.dirname(r'C:\Users\alexa_000\PycharmProjects\homework_files\files\1.txt')
 pages(folder)
